@@ -33,6 +33,18 @@ function injectConfig() {
             if (checkbox && !checkbox.checked) {
                 e.preventDefault();
                 alert('יש לסמן V בתיבה המאשרת שקראת את תנאי השירות לפני ההמשך.');
+                
+                // UX Fix: Scroll to the checkbox and highlight it
+                checkbox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                const container = checkbox.closest('div');
+                if (container) {
+                    const originalBg = container.style.backgroundColor;
+                    container.style.transition = 'background-color 0.3s ease';
+                    container.style.backgroundColor = '#fef08a'; // Light yellow flash
+                    setTimeout(() => {
+                        container.style.backgroundColor = originalBg || '#f8fafc';
+                    }, 800);
+                }
             }
         });
     });
@@ -49,41 +61,24 @@ function renderFAQ() {
     if (!faqContainer || !window.FAQ_DATA) return;
 
     window.FAQ_DATA.forEach((item, index) => {
-        const faqItem = document.createElement('div');
-        faqItem.className = 'faq-item';
+        const faqItem = document.createElement('details');
+        faqItem.className = 'premium-accordion';
         
         faqItem.innerHTML = `
-            <div class="faq-question">
-                <span>${item.question}</span>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-            </div>
-            <div class="faq-answer">
+            <summary>${item.question}</summary>
+            <div class="details-content">
                 <p>${item.answer}</p>
             </div>
         `;
 
-        const questionElement = faqItem.querySelector('.faq-question');
-        const answerElement = faqItem.querySelector('.faq-answer');
-
-        questionElement.addEventListener('click', () => {
-            const isOpen = faqItem.classList.contains('open');
-            
-            // סגירת כל השאלות האחרות (אופציונלי - כרגע נאפשר פתיחה של כמה במקביל)
-            /*
-            document.querySelectorAll('.faq-item.open').forEach(el => {
-                el.classList.remove('open');
-                el.querySelector('.faq-answer').style.maxHeight = null;
-            });
-            */
-
-            if (!isOpen) {
-                faqItem.classList.add('open');
-                answerElement.style.maxHeight = answerElement.scrollHeight + "px";
-            } else {
-                faqItem.classList.remove('open');
-                answerElement.style.maxHeight = null;
+        // אופציונלי: סגירת אקורדיונים אחרים כשפותחים אחד
+        faqItem.addEventListener('toggle', (e) => {
+            if (faqItem.open) {
+                document.querySelectorAll('#faq-container .premium-accordion').forEach(otherItem => {
+                    if (otherItem !== faqItem) {
+                        otherItem.removeAttribute('open');
+                    }
+                });
             }
         });
 

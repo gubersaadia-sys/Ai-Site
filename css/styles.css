@@ -266,43 +266,109 @@ section {
     color: #1e40af;
 }
 
-/* FAQ Accordion */
-.faq-item {
-    border-bottom: 1px solid var(--border-color);
+/* Accordions & Grids */
+details.premium-accordion {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
 }
 
-.faq-item:last-child {
-    border-bottom: none;
+details.premium-accordion[open] {
+    box-shadow: var(--shadow-md);
+    border-color: #cbd5e1;
 }
 
-.faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 0;
-    cursor: pointer;
+details.premium-accordion summary {
     font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding-left: 28px; /* RTL - icon on left */
+    color: var(--text-main);
+    outline: none;
     user-select: none;
 }
 
-.faq-question svg {
+details.premium-accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+details.premium-accordion summary::after {
+    content: "+";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--primary);
     transition: transform 0.2s ease;
-    flex-shrink: 0;
 }
 
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
+details.premium-accordion[open] summary::after {
+    content: "−";
+    transform: translateY(-50%) rotate(180deg);
 }
 
-.faq-answer p {
-    padding-bottom: 16px;
+details.premium-accordion[open] summary {
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 12px;
+}
+
+.details-content {
     color: var(--text-muted);
+    line-height: 1.6;
 }
 
-.faq-item.open .faq-question svg {
-    transform: rotate(180deg);
+.details-content p {
+    margin-bottom: 12px;
+}
+.details-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* Grids */
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.trust-badges-hero {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 16px;
+    margin-bottom: 32px;
+}
+
+.trust-badge-pill {
+    background-color: #dbeafe;
+    color: #1e40af;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.trust-badge-pill svg {
+    flex-shrink: 0;
 }
 
 /* Sticky WhatsApp CTA */
