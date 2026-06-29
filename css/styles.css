@@ -21,7 +21,8 @@
     padding: 0;
 }
 
-html, body {
+html,
+body {
     font-family: 'Heebo', sans-serif;
     background-color: var(--bg-page);
     color: var(--text-main);
@@ -33,11 +34,14 @@ html, body {
     max-width: 800px;
     margin: 0 auto;
     padding: 24px 16px;
-    padding-bottom: 100px; /* Space for sticky whatsapp */
+    padding-bottom: 100px;
+    /* Space for sticky whatsapp */
 }
 
 /* Typography */
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     font-weight: 700;
     color: var(--text-main);
     margin-bottom: 16px;
@@ -288,7 +292,8 @@ details.premium-accordion summary {
     cursor: pointer;
     list-style: none;
     position: relative;
-    padding-left: 28px; /* RTL - icon on left */
+    padding-left: 28px;
+    /* RTL - icon on left */
     color: var(--text-main);
     outline: none;
     user-select: none;
@@ -329,6 +334,7 @@ details.premium-accordion[open] summary {
 .details-content p {
     margin-bottom: 12px;
 }
+
 .details-content p:last-child {
     margin-bottom: 0;
 }
@@ -375,7 +381,8 @@ details.premium-accordion[open] summary {
 .sticky-whatsapp {
     position: fixed;
     bottom: 24px;
-    left: 24px; /* RTL - left side is more natural for chat bubbles typically, but bottom corner is fine */
+    left: 24px;
+    /* RTL - left side is more natural for chat bubbles typically, but bottom corner is fine */
     background-color: #25D366;
     color: white;
     display: flex;
@@ -443,19 +450,19 @@ footer a:hover {
     h1 {
         font-size: 2rem;
     }
-    
+
     .availability-card {
         flex-direction: column;
         align-items: flex-start;
     }
-    
+
     .sticky-whatsapp {
         left: 16px;
         bottom: 16px;
         right: 16px;
         justify-content: center;
     }
-    
+
     .legal-page {
         padding: 24px 16px;
     }
