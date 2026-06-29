@@ -71,18 +71,24 @@ function renderFAQ() {
             </div>
         `;
 
-        // אופציונלי: סגירת אקורדיונים אחרים כשפותחים אחד
-        faqItem.addEventListener('toggle', (e) => {
-            if (faqItem.open) {
-                document.querySelectorAll('#faq-container .premium-accordion').forEach(otherItem => {
-                    if (otherItem !== faqItem) {
-                        otherItem.removeAttribute('open');
+        faqContainer.appendChild(faqItem);
+    });
+}
+
+// ניהול כל האקורדיונים בדף
+function initAccordions() {
+    const accordions = document.querySelectorAll('.premium-accordion');
+    accordions.forEach(acc => {
+        acc.addEventListener('toggle', (e) => {
+            if (acc.open) {
+                const container = acc.parentElement;
+                container.querySelectorAll('.premium-accordion').forEach(other => {
+                    if (other !== acc && other.open) {
+                        other.removeAttribute('open');
                     }
                 });
             }
         });
-
-        faqContainer.appendChild(faqItem);
     });
 }
 
@@ -90,4 +96,5 @@ function renderFAQ() {
 document.addEventListener('DOMContentLoaded', () => {
     injectConfig();
     renderFAQ();
+    initAccordions();
 });

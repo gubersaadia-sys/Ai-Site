@@ -21,7 +21,7 @@ window.SITE_CONFIG = {
 
     // יצירת קשר
     whatsappNumber: "972538299830", // יש לעדכן למספר האמיתי (ללא פלוס וללא אפס בהתחלה)
-    whatsappMessage: "היי, אני מעוניין/ת בקישור הפעלה ל-Google AI Pro",
+    whatsappMessage: "היי, אני מעוניין/ת בקישור הפעלה ל־Google AI Pro. אשמח לבדוק זמינות.",
 
     // אמצעי תשלום
     paymentMethods: "ביט",
