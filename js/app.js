@@ -28,6 +28,13 @@ function injectConfig() {
     // עדכון קישורי ווטסאפ
     document.querySelectorAll('.whatsapp-link').forEach(link => {
         link.href = getWhatsappLink();
+        link.addEventListener('click', (e) => {
+            const checkbox = document.getElementById('terms-checkbox');
+            if (checkbox && !checkbox.checked) {
+                e.preventDefault();
+                alert('יש לסמן V בתיבה המאשרת שקראת את תנאי השירות לפני ההמשך.');
+            }
+        });
     });
     
     // עדכון כותרת הדף
